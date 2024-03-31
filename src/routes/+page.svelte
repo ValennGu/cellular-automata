@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Cell from '../components/cell.svelte';
+	import ControlPanel from '../components/control-panel.svelte';
+
 	import { buildMatrix } from '../services/build-matrix';
 	import { calculateMatrix } from '../services/calcualte-matrix';
 
@@ -16,6 +18,7 @@
 	};
 </script>
 
+<ControlPanel />
 <div>
 	{#each matrix as row, rowIndex}
 		<section>
