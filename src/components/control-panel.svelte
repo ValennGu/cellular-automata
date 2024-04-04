@@ -2,21 +2,27 @@
 	import Button from './button.svelte';
 
 	export let loopActive: boolean;
-	export let onClickStart: () => void;
-	export let onClickStop: () => void;
-
-	console.log('Rendering Control panel');
+	export let onGenerateAutomata: () => void;
+	export let onResetMatrix: () => void;
+	export let onStart: () => void;
+	export let onStop: () => void;
 </script>
 
 <div class="wrapper">
 	<span>| Control Panel</span>
-	<div class="info">
+	<div class="menu-item">
 		<p>* Sim. Running</p>
 		<p>{loopActive.toString().toUpperCase()}</p>
 	</div>
 	<section>
-		<Button text="Start" onClick={onClickStart} disabled={loopActive} />
-		<Button text="Stop" onClick={onClickStop} disabled={!loopActive} />
+		<Button text="Generate automata" onClick={onGenerateAutomata} />
+	</section>
+	<section>
+		<Button text="Reset matrix" onClick={onResetMatrix} />
+	</section>
+	<section>
+		<Button text="Start" onClick={onStart} disabled={loopActive} />
+		<Button text="Stop" onClick={onStop} disabled={!loopActive} />
 	</section>
 </div>
 
@@ -31,7 +37,7 @@
 		display: block;
 	}
 
-	.info {
+	.menu-item {
 		display: flex;
 		justify-content: space-between;
 		color: #00ff00;

@@ -17,15 +17,30 @@
 			matrix = calculateMatrix(matrix);
 		}, 50);
 	};
+
+	const generateAutomata = () => {
+		matrix[0][1] = true;
+		matrix[1][2] = true;
+		matrix[2][0] = true;
+		matrix[2][1] = true;
+		matrix[2][2] = true;
+	};
+
+	const resetMatrix = () => {
+		matrix = buildMatrix(100, 100);
+		loopActive = false;
+	};
 </script>
 
 <ControlPanel
 	{loopActive}
-	onClickStart={() => {
+	onGenerateAutomata={() => generateAutomata()}
+	onResetMatrix={() => resetMatrix()}
+	onStart={() => {
 		loopActive = true;
 		startInterval();
 	}}
-	onClickStop={() => {
+	onStop={() => {
 		loopActive = false;
 		clearInterval(interval);
 	}}
