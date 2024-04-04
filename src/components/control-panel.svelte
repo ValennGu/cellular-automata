@@ -1,28 +1,22 @@
-<script>
+<script lang="ts">
 	import Button from './button.svelte';
+
+	export let loopActive: boolean;
+	export let onClickStart: () => void;
+	export let onClickStop: () => void;
+
+	console.log('Rendering Control panel');
 </script>
 
 <div class="wrapper">
 	<span>| Control Panel</span>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
-	<p>* Empty menu item</p>
+	<div class="info">
+		<p>* Sim. Running</p>
+		<p>{loopActive.toString().toUpperCase()}</p>
+	</div>
 	<section>
-		<Button text="Start" onClick={() => console.log('Start Cliked!')} />
-		<Button text="Stop" onClick={() => console.log('Stop Cliked!')} disabled={true} />
+		<Button text="Start" onClick={onClickStart} disabled={loopActive} />
+		<Button text="Stop" onClick={onClickStop} disabled={!loopActive} />
 	</section>
 </div>
 
@@ -35,6 +29,19 @@
 		top: 20px;
 		padding: 10px;
 		display: block;
+	}
+
+	.info {
+		display: flex;
+		justify-content: space-between;
+		color: #00ff00;
+		margin: 0;
+		padding: 5px;
+		border: 1px solid transparent;
+		&:hover {
+			border: 1px solid #00ff00;
+			cursor: pointer;
+		}
 	}
 
 	span {

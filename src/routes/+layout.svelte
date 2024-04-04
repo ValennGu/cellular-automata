@@ -19,13 +19,6 @@
 	}
 
 	:global(p) {
-		color: #00ff00;
 		margin: 0;
-		padding: 5px;
-		border: 1px solid transparent;
-		&:hover {
-			border: 1px solid #00ff00;
-			cursor: pointer;
-		}
 	}
 </style>
