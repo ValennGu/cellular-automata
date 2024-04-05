@@ -4,7 +4,8 @@
 	import { buildMatrix } from '../services/build-matrix';
 	import { calculateMatrix } from '../services/calcualte-matrix';
 
-	let matrix = buildMatrix(100, 100);
+	const matrixSize = 75;
+	let matrix = buildMatrix(matrixSize, matrixSize);
 	let loopActive = false;
 	let interval: number;
 
@@ -32,20 +33,20 @@
 
 	const resetMatrix = () => {
 		stopInterval();
-		matrix = buildMatrix(100, 100);
+		matrix = buildMatrix(matrixSize, matrixSize);
 		loopActive = false;
 	};
 </script>
 
 <ControlPanel
 	{loopActive}
-	onGenerateAutomata={() => generateAutomata()}
-	onResetMatrix={() => resetMatrix()}
-	onStart={() => {
+	on:generateAutomata={generateAutomata}
+	on:resetMatrix={resetMatrix}
+	on:start={() => {
 		loopActive = true;
 		startInterval();
 	}}
-	onStop={() => {
+	on:stop={() => {
 		loopActive = false;
 		stopInterval();
 	}}

@@ -1,10 +1,9 @@
 <script lang="ts">
 	export let text: string;
 	export let disabled: boolean = false;
-	export let onClick: () => void;
 </script>
 
-<button on:click={onClick} {disabled}>{text}</button>
+<button on:click {disabled}>{text}</button>
 
 <style>
 	button {

@@ -1,11 +1,9 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Button from './button.svelte';
 
-	export let loopActive: boolean;
-	export let onGenerateAutomata: () => void;
-	export let onResetMatrix: () => void;
-	export let onStart: () => void;
-	export let onStop: () => void;
+	export let loopActive: boolean = false;
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class="wrapper">
@@ -15,14 +13,14 @@
 		<p>{loopActive.toString().toUpperCase()}</p>
 	</div>
 	<section>
-		<Button text="Generate automata" onClick={onGenerateAutomata} />
+		<Button text="Generate automata" on:click={() => dispatch('generateAutomata')} />
 	</section>
 	<section>
-		<Button text="Reset matrix" onClick={onResetMatrix} />
+		<Button text="Reset matrix" on:click={() => dispatch('resetMatrix')} />
 	</section>
 	<section>
-		<Button text="Start" onClick={onStart} disabled={loopActive} />
-		<Button text="Stop" onClick={onStop} disabled={!loopActive} />
+		<Button text="Start" on:click={() => dispatch('start')} disabled={loopActive} />
+		<Button text="Stop" on:click={() => dispatch('stop')} disabled={!loopActive} />
 	</section>
 </div>
 
