@@ -18,6 +18,10 @@
 		}, 50);
 	};
 
+	const stopInterval = () => {
+		clearInterval(interval);
+	};
+
 	const generateAutomata = () => {
 		matrix[0][1] = true;
 		matrix[1][2] = true;
@@ -27,6 +31,7 @@
 	};
 
 	const resetMatrix = () => {
+		stopInterval();
 		matrix = buildMatrix(100, 100);
 		loopActive = false;
 	};
@@ -42,7 +47,7 @@
 	}}
 	onStop={() => {
 		loopActive = false;
-		clearInterval(interval);
+		stopInterval();
 	}}
 />
 
