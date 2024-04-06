@@ -10,6 +10,7 @@
 		display: block;
 		width: 100%;
 		padding: 10px;
+		margin-top: 10px;
 		background-color: transparent;
 		border: 1px solid #00ff00;
 		font-size: 12px;

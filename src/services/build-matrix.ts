@@ -1,9 +1,9 @@
-export const buildMatrix = (height: number, width: number): boolean[][] => {
+export const buildMatrix = (size: number): boolean[][] => {
 	const matrix: boolean[][] = [];
 
-	for (let rowIndex = 0; rowIndex < height; rowIndex++) {
+	for (let rowIndex = 0; rowIndex < size; rowIndex++) {
 		const newRow: boolean[] = [];
-		for (let columnIndex = 0; columnIndex < width; columnIndex++) {
+		for (let columnIndex = 0; columnIndex < size; columnIndex++) {
 			const newColumn = false;
 			newRow.push(newColumn);
 		}

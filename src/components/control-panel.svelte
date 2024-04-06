@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import Button from './button.svelte';
-
-	export let loopActive: boolean = false;
-	const dispatch = createEventDispatcher();
+	import { active, matrix } from '../stores/store';
 </script>
 
 <div class="wrapper">
 	<span>| Control Panel</span>
 	<div class="menu-item">
 		<p>* Sim. Running</p>
-		<p>{loopActive.toString().toUpperCase()}</p>
+		<p>{$active.toString().toUpperCase()}</p>
 	</div>
+	<Button text="Generate automata" on:click={matrix.generateAutomata} />
+	<Button
+		text="Reset matrix"
+		on:click={() => {
+			active.disable();
+			matrix.reset();
+		}}
+	/>
 	<section>
-		<Button text="Generate automata" on:click={() => dispatch('generateAutomata')} />
-	</section>
-	<section>
-		<Button text="Reset matrix" on:click={() => dispatch('resetMatrix')} />
-	</section>
-	<section>
-		<Button text="Start" on:click={() => dispatch('start')} disabled={loopActive} />
-		<Button text="Stop" on:click={() => dispatch('stop')} disabled={!loopActive} />
+		<Button text="Start" on:click={active.enable} disabled={$active} />
+		<Button text="Stop" on:click={active.disable} disabled={!$active} />
 	</section>
 </div>
 
@@ -29,7 +28,7 @@
 		border: 1px solid #00ff00;
 		width: 278px;
 		position: absolute;
-		right: 20px;
+		left: 20px;
 		top: 20px;
 		padding: 10px;
 		display: block;
@@ -61,6 +60,5 @@
 		justify-content: space-between;
 		gap: 10px;
 		width: 100%;
-		margin-top: 10px;
 	}
 </style>

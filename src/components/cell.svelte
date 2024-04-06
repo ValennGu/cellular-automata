@@ -1,11 +1,8 @@
 <script lang="ts">
 	export let isActive: boolean;
-	export let onClick: () => void;
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class={isActive ? 'active' : ''} on:click={onClick} />
+<div class={isActive ? 'active' : ''} />
 
 <style>
 	div {
