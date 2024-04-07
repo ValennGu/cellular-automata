@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Cell from '../components/cell.svelte';
 	import ControlPanel from '../components/control-panel.svelte';
-	import { active, matrix } from '../stores/store';
+	import { active, matrix, steps } from '../stores/store';
 
 	let interval: number;
 
 	const startInterval = () => {
 		interval = setInterval(() => {
 			matrix.loop();
+			steps.forward();
 		}, 50);
 	};
 

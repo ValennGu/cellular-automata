@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './button.svelte';
-	import { active, matrix } from '../stores/store';
+	import { active, matrix, steps } from '../stores/store';
 </script>
 
 <div class="wrapper">
@@ -9,14 +9,37 @@
 		<p>* Sim. Running</p>
 		<p>{$active.toString().toUpperCase()}</p>
 	</div>
+	<div class="menu-item">
+		<p>* Steps</p>
+		<p>{$steps}</p>
+	</div>
 	<Button text="Generate automata" on:click={matrix.generateAutomata} />
 	<Button
 		text="Reset matrix"
 		on:click={() => {
 			active.disable();
 			matrix.reset();
+			steps.reset();
 		}}
 	/>
+	<section>
+		<Button
+			text="<<< (WIP)"
+			on:click={() => {
+				matrix.loop();
+				steps.backward();
+			}}
+			disabled={true}
+		/>
+		<Button
+			text=">>>"
+			on:click={() => {
+				matrix.loop();
+				steps.forward();
+			}}
+			disabled={$active}
+		/>
+	</section>
 	<section>
 		<Button text="Start" on:click={active.enable} disabled={$active} />
 		<Button text="Stop" on:click={active.disable} disabled={!$active} />
