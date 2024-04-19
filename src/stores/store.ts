@@ -13,14 +13,14 @@ const createActive = () => {
 	};
 };
 
-const createMatrix = (size: number) => {
-	const { subscribe, update } = writable(buildMatrix(size));
+const createMatrix = () => {
+	const { subscribe, update } = writable(buildMatrix(0, 0));
 
 	return {
 		subscribe,
 		loop: () => update((matrix) => calculateMatrix(matrix)),
 		back: () => {},
-		reset: () => update(() => buildMatrix(size)),
+		build: (rows: number, columns: number) => update(() => buildMatrix(rows, columns)),
 		generateAutomata: () => update((matrix) => generateAutomata(matrix))
 	};
 };
@@ -37,5 +37,5 @@ const createSteps = () => {
 };
 
 export const active = createActive();
-export const matrix = createMatrix(75);
+export const matrix = createMatrix();
 export const steps = createSteps();

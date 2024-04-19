@@ -1,13 +1,45 @@
 <script lang="ts">
 	import Button from './button.svelte';
 	import { active, matrix, steps } from '../stores/store';
+
+	let rows: number = 0;
+	let columns: number = 0;
+
+	$: innerWidth = 0;
+	$: innerHeight = 0;
+
+	$: {
+		rows = Math.round(innerHeight / 10) - 1;
+		columns = Math.round(innerWidth / 10) - 1;
+
+		matrix.build(rows, columns);
+		steps.reset();
+		active.disable();
+	}
 </script>
 
+<svelte:window bind:innerWidth bind:innerHeight />
 <div class="wrapper">
 	<span>| Control Panel</span>
 	<div class="menu-item">
 		<p>* Sim. Running</p>
 		<p>{$active.toString().toUpperCase()}</p>
+	</div>
+	<div class="menu-item">
+		<p>* Inner Width</p>
+		<p>{innerWidth}</p>
+	</div>
+	<div class="menu-item">
+		<p>* Inner Height</p>
+		<p>{innerHeight}</p>
+	</div>
+	<div class="menu-item">
+		<p>* Matrix Rows</p>
+		<p>{rows}</p>
+	</div>
+	<div class="menu-item">
+		<p>* Matrix Columns</p>
+		<p>{columns}</p>
 	</div>
 	<div class="menu-item">
 		<p>* Steps</p>
@@ -18,7 +50,7 @@
 		text="Reset matrix"
 		on:click={() => {
 			active.disable();
-			matrix.reset();
+			matrix.build(rows, columns);
 			steps.reset();
 		}}
 	/>
