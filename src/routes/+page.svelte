@@ -16,6 +16,11 @@
 		clearInterval(interval);
 	};
 
+	/**
+	 * Reactive declarations, Computed States or Reactive statements,
+	 * they got recalculated once any of the parts change.
+	 * When @$active change, the whole $ block gets executed.
+	 */
 	$: if ($active) {
 		startInterval();
 	}
